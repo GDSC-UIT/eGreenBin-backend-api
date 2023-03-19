@@ -115,7 +115,6 @@ This project requires the following dependencies to be installed:
         "parentEmail": "phanvanminh1234567890@gmail.com",
         "Note": ""
     }
-    }
     
     ```
     
