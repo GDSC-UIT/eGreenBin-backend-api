@@ -36,8 +36,14 @@ func NewStudentHandler(gin *gin.RouterGroup, appCtx component.AppContext, db *mo
 // FetchArticle will fetch the article based on given params
 func (a *StudentHandler) GetStudents(c *gin.Context) {
 	ctx := c.Request.Context()
+	query := c.Query("code")
 	var students []models.Student
-	cursor, err := a.DB.Collection("students").Find(context.TODO(), bson.M{})
+
+	var key = bson.M{}
+	if query != "" {
+		key = bson.M{"code": query}
+	}
+	cursor, err := a.DB.Collection("students").Find(context.TODO(), key)
 	if err != nil {
 		panic(err)
 	}
